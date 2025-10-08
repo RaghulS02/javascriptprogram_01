@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Image Slider</title>
+ <style>
+ .slider {
+   text-align: center;
+   position: relative;
+   width: 60%;
+   margin: auto;
+ }
+ .slider img {
+   width: 100%;
+   height: auto;
+ }
+ .slider button {
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   padding: 10px;
+   background-color: rgba(0, 0, 0, 0.5);
+   color: white;
+   border: none;
+   cursor: pointer;
+ }
+ #prevBtn {
+   left: 10px;
+ }
+ #nextBtn {
+   right: 10px;
+ }
+ </style>
+</head>
+<body>
+ <div class="slider">
+   <img src="https://tse2.mm.bing.net/th/id/OIP.NrLB6OSIOBQw45qWOptd-AHaDL?rs=1&pid=ImgDetMain&o=7&rm=3" class="slider-image" alt="Image 1">
+   <button id="prevBtn">Previous</button>
+   <button id="nextBtn">Next</button>
+ </div>
+ <script>
+   // Array of image URLs
+   const images = [
+     "https://tse2.mm.bing.net/th/id/OIP.NrLB6OSIOBQw45qWOptd-AHaDL?rs=1&pid=ImgDetMain&o=7&rm=3",
+     "https://wallpaperaccess.com/full/6163606.jpg",
+     "https://wallpaperaccess.com/full/9411696.jpg",
+     "https://images.hdqwalls.com/download/2020-pubg-game-season-4k-g5-1920x1080.jpg"
+   ];
+   let currentIndex = 0;
+   const imgElement = document.querySelector(".slider-image");
+   const nextBtn = document.getElementById("nextBtn");
+   const prevBtn = document.getElementById("prevBtn");
+
+   // Update image function
+   function showImage(index) {
+     imgElement.src = images[index];
+   }
+
+   // Manual image navigation
+   nextBtn.addEventListener("click", () => {
+     currentIndex = (currentIndex + 1) % images.length;
+     showImage(currentIndex);
+   });
+
+   prevBtn.addEventListener("click", () => {
+     currentIndex = (currentIndex - 1 + images.length) % images.length;
+     showImage(currentIndex);
+   });
+
+   // Optional: Automatic image change every 3 seconds
+   setInterval(() => {
+     currentIndex = (currentIndex + 1) % images.length;
+     showImage(currentIndex);
+   }, 3000);
+ </script>
+</body>
+</html>
